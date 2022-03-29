@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ARCOSBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LOGAR">
+          <Key>
+            <PropertyRef Name="ID_LOGAR" />
+          </Key>
+          <Property Name="ID_LOGAR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOGIN" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SENHA" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PESSOA">
+          <Key>
+            <PropertyRef Name="ID_PESSOA" />
+          </Key>
+          <Property Name="ID_PESSOA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="RG" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="CEP" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="LOGRADOURO" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="NUMERO" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="COMPLEMENTO" Type="varchar" MaxLength="255" />
+          <Property Name="BAIRRO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CIDADE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TELEFONE" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FORNECEDOR" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ARCOSBDModelStoreContainer">
+          <EntitySet Name="LOGAR" EntityType="Self.LOGAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PESSOA" EntityType="Self.PESSOA" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ARCOSBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LOGAR">
+          <Key>
+            <PropertyRef Name="ID_LOGAR" />
+          </Key>
+          <Property Name="ID_LOGAR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOGIN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SENHA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ARCOSBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LOGAR" EntityType="Self.LOGAR" />
+          <EntitySet Name="PESSOA" EntityType="ARCOSBDModel.PESSOA" />
+        </EntityContainer>
+        <EntityType Name="PESSOA">
+          <Key>
+            <PropertyRef Name="ID_PESSOA" />
+          </Key>
+          <Property Name="ID_PESSOA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="RG" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="CEP" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="LOGRADOURO" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="COMPLEMENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BAIRRO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CIDADE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONE" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FORNECEDOR" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ARCOSBDModelStoreContainer" CdmEntityContainer="ARCOSBDEntities">
+          <EntitySetMapping Name="LOGAR">
+            <EntityTypeMapping TypeName="ARCOSBDModel.LOGAR">
+              <MappingFragment StoreEntitySet="LOGAR">
+                <ScalarProperty Name="ID_LOGAR" ColumnName="ID_LOGAR" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="SENHA" ColumnName="SENHA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PESSOA">
+            <EntityTypeMapping TypeName="ARCOSBDModel.PESSOA">
+              <MappingFragment StoreEntitySet="PESSOA">
+                <ScalarProperty Name="FORNECEDOR" ColumnName="FORNECEDOR" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+                <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+                <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+                <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="LOGRADOURO" ColumnName="LOGRADOURO" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="RG" ColumnName="RG" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="ID_PESSOA" ColumnName="ID_PESSOA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
