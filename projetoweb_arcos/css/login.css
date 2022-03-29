@@ -1,0 +1,50 @@
+﻿body {
+    background: #0264d6;
+}
+
+form{
+    margin-bottom: 20px;
+}
+.body {
+    background: #0264d6;
+}
+
+#login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+    #login div {
+        position: relative;
+        animation: arcoslogin 3s;
+    }
+
+
+.login {
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 15px 15px 15px black;
+    display: flex;
+    align-self: flex-start;
+    top: 100px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginImagem {
+    margin-top: 40px;
+    align-content: center;
+    width: 96px;
+    height: 96px;
+}
+
+.botao {
+    background-color: #00BFFF;
+    padding: 30px 30px 30px 30px;
+}
+
+
