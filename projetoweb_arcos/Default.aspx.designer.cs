@@ -24,6 +24,7 @@ namespace projetoweb_arcos
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+<<<<<<< HEAD
         /// Controle LoginImagem.
         /// </summary>
         /// <remarks>
@@ -33,6 +34,8 @@ namespace projetoweb_arcos
         protected global::System.Web.UI.WebControls.Image LoginImagem;
 
         /// <summary>
+=======
+>>>>>>> 829ca967a3ad8641f5d36042a284e784a6ff43b7
         /// Controle lblLogin.
         /// </summary>
         /// <remarks>

@@ -76,12 +76,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cadastro.aspx" />
+<<<<<<< HEAD
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\estilo.css" />
     <Content Include="css\login.css" />
     <Content Include="Default.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="js\jquery.min.js" />
+=======
+    <Content Include="Default.aspx" />
+    <Content Include="Home.aspx" />
+>>>>>>> 829ca967a3ad8641f5d36042a284e784a6ff43b7
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -158,9 +163,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="img\" />
   </ItemGroup>
+=======
+>>>>>>> 829ca967a3ad8641f5d36042a284e784a6ff43b7
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
