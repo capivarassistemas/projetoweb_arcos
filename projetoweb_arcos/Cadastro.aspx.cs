@@ -11,53 +11,59 @@ namespace projetoweb_arcos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["usuariologado"] != null)
+            {
+                String nome = (String)Session["usuariologado"];
+                lblUsuarioLogado.Text = nome;
+            }
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }
+            
+        }
 
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Response.Redirect("/Default.aspx");
         }
 
         protected void btnConsultar_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            ARCOSBDEntities context = new ARCOSBDEntities();
-
-            string nome, cpf;
-
-            nome = txtNome.Text;
-            cpf = txtCpf.Text;
-
-            if (nome.Equals("") || cpf.Equals(""))
+            using (ARCOSBDEntities context = new ARCOSBDEntities())
             {
-                lblAviso.Text = "Existe(m) campo(s) em branco.";
-            }
-            else
-            {
-                PESSOA user = context.PESSOA.FirstOrDefault(p => p.NOME.Equals(nome) && p.CPF.Equals(cpf));
+                string nome, cpf;
 
-                if(user != null)
+                nome = txtNome.Text;
+                cpf = txtCpf.Text;
+
+                if (nome.Equals("") || cpf.Equals(""))
                 {
-                    lblAviso.Text = "Usuário " + nome + " já está cadastrado.";
+                    lblAviso.Text = "Existe(m) campo(s) em branco.";
                 }
                 else
                 {
-                    lblAviso.Text = "Usuário não cadastrado";
+                    PESSOA user = context.PESSOA.FirstOrDefault(p => p.NOME.Equals(nome) && p.CPF.Equals(cpf));
+
+                    if (user != null)
+                    {
+                        lblAviso.Text = "Usuário " + nome + " já está cadastrado.";
+                    }
+                    else
+                    {
+                        lblAviso.Text = "Usuário não cadastrado";
+                    }
                 }
             }
 
-
-          
-=======
-
->>>>>>> 829ca967a3ad8641f5d36042a284e784a6ff43b7
         }
 
         protected void btnGravar_Click(object sender, EventArgs e)
         {
             string nome, cpf, rg, cep, logradouro, numero, complemento, bairro, cidade, telefone, email;
             bool fornecedor;
-<<<<<<< HEAD
 
-=======
-                                  
->>>>>>> 829ca967a3ad8641f5d36042a284e784a6ff43b7
             nome = txtNome.Text;
             cpf = txtCpf.Text;
             rg = txtRg.Text;
@@ -71,18 +77,14 @@ namespace projetoweb_arcos
             email = txtEmail.Text;
             fornecedor = chkFornecedor.Checked;
 
-<<<<<<< HEAD
+
             if (nome.Equals("") || cpf.Equals("") || rg.Equals("") || logradouro.Equals("") || numero.Equals("")
-=======
-            if(nome.Equals("") || cpf.Equals("") || rg.Equals("") || logradouro.Equals("") || numero.Equals("")
->>>>>>> 829ca967a3ad8641f5d36042a284e784a6ff43b7
                 || complemento.Equals("") || bairro.Equals("") || cidade.Equals("") || telefone.Equals("")
                 || email.Equals(""))
             {
 
                 lblAviso.Text = "Existe(m) campo(s) em branco";
             }
-<<<<<<< HEAD
             else
             {
                 if (chkFornecedor.Checked)
@@ -120,10 +122,10 @@ namespace projetoweb_arcos
                 Limpar();
             }
 
+          
 
-           
+
         }
-
 
         public void Limpar()
         {
@@ -139,46 +141,8 @@ namespace projetoweb_arcos
             txtTelefone.Text = string.Empty;
             txtEmail.Text = string.Empty;
             chkFornecedor.Checked = false;
-=======
-
-
-            if(chkFornecedor.Checked)
-            {
-                fornecedor = true;
-            }
-            else
-            {
-                fornecedor = false;
-            }
-
-            ARCOSBDEntities context = new ARCOSBDEntities();
-
-            PESSOA p = new PESSOA();
-
-            p.CPF = cpf;
-            p.NOME = nome;
-            p.RG = rg;
-            p.CEP = cep;
-            p.LOGRADOURO = logradouro;
-            p.NUMERO = numero;
-            p.COMPLEMENTO = complemento;
-            p.BAIRRO = bairro;
-            p.CIDADE = cidade;
-            p.TELEFONE = telefone;
-            p.EMAIL = email;
-            p.FORNECEDOR = fornecedor;
-
-            context.PESSOA.Add(p);
-
-            context.SaveChanges();
-
-            lblAviso.Text = "Usuário cadastrado com sucesso.";
->>>>>>> 829ca967a3ad8641f5d36042a284e784a6ff43b7
         }
 
-        
 
-      
-       
     }
 }

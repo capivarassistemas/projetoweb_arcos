@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace projetoweb_arcos
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Defautl : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,18 +27,22 @@ namespace projetoweb_arcos
             }
             else
             {
-                ARCOSBDEntities context = new ARCOSBDEntities();
-
-                LOGAR user = context.LOGAR.FirstOrDefault(l => l.LOGIN.Equals(login) && l.SENHA.Equals(senha));
-
-                if(user != null)
+                using (ARCOSBDEntities conexao = new ARCOSBDEntities())
                 {
-                    Response.Redirect("Cadastro.aspx");
+                    LOGAR user = conexao.LOGAR.Where(l => l.LOGIN.Equals(login) && l.SENHA.Equals(senha)).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        Session["usuariologado"] = user.LOGIN;
+                        Response.Redirect("Cadastro.aspx");
+                    }
+                    else
+                    {
+                        lblAviso.Text = "Login ou senha está incorreto.";
+                    }
                 }
-                else
-                {
-                    lblAviso.Text = "Login ou senha está incorreto.";
-                }
+
+
             }
         }
     }

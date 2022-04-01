@@ -1,0 +1,93 @@
+﻿#login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+    #login div {
+        position: relative;
+        animation: arcoslogin 3s;
+    }
+
+    #login input {
+        animation: mover 2s;
+    }
+
+#txtLogin {
+    animation-timing-function: ease;
+}
+
+#txtSenha {
+    animation-timing-function: ease;
+}
+
+#btnLogar {
+    animation-timing-function: ease;
+}
+
+.login {
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 15px 15px 15px black;
+    display: flex;
+    align-self: flex-start;
+    top: 100px;
+    align-items: center;
+    flex-direction: column;
+}
+
+    .login input {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        border-radius: 5px;
+    }
+
+
+        .login input:hover {
+            border: 1px solid #00BFFF;
+        }
+
+.corInput {
+    background-color: #DCDCDC;
+}
+
+.loginImagem {
+    margin-top: 40px;
+    align-content: center;
+    width: 96px;
+    height: 96px;
+}
+
+.botao {
+    background-color: #00BFFF;
+    padding: 30px 30px 30px 30px;
+}
+
+
+
+
+
+@keyframes arcoslogin {
+    from {
+        top: 0px;
+    }
+
+    to {
+        top: 100px;
+    }
+}
+
+@keyframes mover {
+    from {
+        left: 0px;
+    }
+
+    to {
+        left: 500px;
+    }
+}

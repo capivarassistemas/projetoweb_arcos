@@ -15,13 +15,22 @@ namespace projetoweb_arcos
     {
 
         /// <summary>
-        /// Controle formCadastro.
+        /// Controle lblUsuarioLogado.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formCadastro;
+        protected global::System.Web.UI.WebControls.Label lblUsuarioLogado;
+
+        /// <summary>
+        /// Controle btnLogout.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
 
         /// <summary>
         /// Controle lblCpf.
