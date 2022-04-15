@@ -15,6 +15,7 @@
             <nav>
                 <a href="Home.asp">Home</a> |
                 <a href="Cadastro.aspx">Cadastrar</a>
+               
             </nav>
             <hr />
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

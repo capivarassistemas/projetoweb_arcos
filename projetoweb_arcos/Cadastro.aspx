@@ -11,6 +11,7 @@
     <div>
        
             <div>
+                <a href="Lacamentos.aspx">Lançamentos</a>
                   <div>
                     <asp:Label ID="lblCpf" runat="server" Text="C.N.P.J/C.P.F: "></asp:Label>
                     <asp:TextBox ID="txtCpf" runat="server" ></asp:TextBox>
