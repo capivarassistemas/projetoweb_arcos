@@ -27,5 +27,7 @@ namespace projetoweb_arcos
     
         public virtual DbSet<LOGAR> LOGAR { get; set; }
         public virtual DbSet<PESSOA> PESSOA { get; set; }
+        public virtual DbSet<CONTA> CONTA { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

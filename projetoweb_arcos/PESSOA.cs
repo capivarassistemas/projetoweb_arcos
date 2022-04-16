@@ -14,6 +14,12 @@ namespace projetoweb_arcos
     
     public partial class PESSOA
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PESSOA()
+        {
+            this.CONTA = new HashSet<CONTA>();
+        }
+    
         public int ID_PESSOA { get; set; }
         public string NOME { get; set; }
         public string CPF { get; set; }
@@ -27,5 +33,8 @@ namespace projetoweb_arcos
         public string TELEFONE { get; set; }
         public string EMAIL { get; set; }
         public bool FORNECEDOR { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CONTA> CONTA { get; set; }
     }
 }

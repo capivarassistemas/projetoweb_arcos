@@ -7,6 +7,9 @@
       <Diagram DiagramId="a75f0161b4ef4a2dad2a189685a7bf0b" Name="Diagram1">
         <EntityTypeShape EntityType="ARCOSBDModel.LOGAR" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ARCOSBDModel.PESSOA" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ARCOSBDModel.CONTA" Width="1.5" PointX="6" PointY="1.125" />
+        <EntityTypeShape EntityType="ARCOSBDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="ARCOSBDModel.FK_CONTA_PESSOA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

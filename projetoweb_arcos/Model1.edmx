@@ -5,6 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ARCOSBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CONTA">
+          <Key>
+            <PropertyRef Name="ID_CONTA" />
+          </Key>
+          <Property Name="ID_CONTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CENTRO_CUSTO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CODIGO_BARRA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMPRESA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FORNECEDOR" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CONTABIL" Type="bit" Nullable="false" />
+          <Property Name="NUMERO_NOTAS" Type="int" Nullable="false" />
+          <Property Name="ESPECIE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DATA" Type="date" Nullable="false" />
+          <Property Name="A_PAGAR" Type="bit" Nullable="false" />
+          <Property Name="CAIXA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BAIXA" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OBSERVACOES" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ID_PESSOACONT" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="LOGAR">
           <Key>
             <PropertyRef Name="ID_LOGAR" />
@@ -31,9 +50,37 @@
           <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FORNECEDOR" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_CONTA_PESSOA">
+          <End Role="PESSOA" Type="Self.PESSOA" Multiplicity="1" />
+          <End Role="CONTA" Type="Self.CONTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PESSOA">
+              <PropertyRef Name="ID_PESSOA" />
+            </Principal>
+            <Dependent Role="CONTA">
+              <PropertyRef Name="ID_PESSOACONT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ARCOSBDModelStoreContainer">
+          <EntitySet Name="CONTA" EntityType="Self.CONTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOGAR" EntityType="Self.LOGAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PESSOA" EntityType="Self.PESSOA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CONTA_PESSOA" Association="Self.FK_CONTA_PESSOA">
+            <End Role="PESSOA" EntitySet="PESSOA" />
+            <End Role="CONTA" EntitySet="CONTA" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -50,6 +97,12 @@
         <EntityContainer Name="ARCOSBDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="LOGAR" EntityType="Self.LOGAR" />
           <EntitySet Name="PESSOA" EntityType="ARCOSBDModel.PESSOA" />
+          <EntitySet Name="CONTA" EntityType="ARCOSBDModel.CONTA" />
+          <EntitySet Name="sysdiagrams" EntityType="ARCOSBDModel.sysdiagrams" />
+          <AssociationSet Name="FK_CONTA_PESSOA" Association="ARCOSBDModel.FK_CONTA_PESSOA">
+            <End Role="PESSOA" EntitySet="PESSOA" />
+            <End Role="CONTA" EntitySet="CONTA" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PESSOA">
           <Key>
@@ -68,7 +121,50 @@
           <Property Name="TELEFONE" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FORNECEDOR" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CONTA" Relationship="ARCOSBDModel.FK_CONTA_PESSOA" FromRole="PESSOA" ToRole="CONTA" />
         </EntityType>
+        <EntityType Name="CONTA">
+          <Key>
+            <PropertyRef Name="ID_CONTA" />
+          </Key>
+          <Property Name="ID_CONTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="A_PAGAR" Type="Boolean" Nullable="false" />
+          <Property Name="CENTRO_CUSTO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_BARRA" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPRESA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BAIXA" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACOES" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_NOTAS" Type="Int32" Nullable="false" />
+          <Property Name="ID_PESSOACONT" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PESSOA" Relationship="ARCOSBDModel.FK_CONTA_PESSOA" FromRole="CONTA" ToRole="PESSOA" />
+          <Property Name="FORNECEDOR" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CONTABIL" Type="Boolean" Nullable="false" />
+          <Property Name="ESPECIE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DATA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CAIXA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_CONTA_PESSOA">
+          <End Type="ARCOSBDModel.PESSOA" Role="PESSOA" Multiplicity="1" />
+          <End Type="ARCOSBDModel.CONTA" Role="CONTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PESSOA">
+              <PropertyRef Name="ID_PESSOA" />
+            </Principal>
+            <Dependent Role="CONTA">
+              <PropertyRef Name="ID_PESSOACONT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -103,6 +199,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CONTA">
+            <EntityTypeMapping TypeName="ARCOSBDModel.CONTA">
+              <MappingFragment StoreEntitySet="CONTA">
+                <ScalarProperty Name="CAIXA" ColumnName="CAIXA" />
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="ESPECIE" ColumnName="ESPECIE" />
+                <ScalarProperty Name="CONTABIL" ColumnName="CONTABIL" />
+                <ScalarProperty Name="FORNECEDOR" ColumnName="FORNECEDOR" />
+                <ScalarProperty Name="ID_PESSOACONT" ColumnName="ID_PESSOACONT" />
+                <ScalarProperty Name="NUMERO_NOTAS" ColumnName="NUMERO_NOTAS" />
+                <ScalarProperty Name="OBSERVACOES" ColumnName="OBSERVACOES" />
+                <ScalarProperty Name="BAIXA" ColumnName="BAIXA" />
+                <ScalarProperty Name="EMPRESA" ColumnName="EMPRESA" />
+                <ScalarProperty Name="CODIGO_BARRA" ColumnName="CODIGO_BARRA" />
+                <ScalarProperty Name="CENTRO_CUSTO" ColumnName="CENTRO_CUSTO" />
+                <ScalarProperty Name="A_PAGAR" ColumnName="A_PAGAR" />
+                <ScalarProperty Name="ID_CONTA" ColumnName="ID_CONTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ARCOSBDModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -121,6 +248,7 @@
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="SynchronizePropertyFacets" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
